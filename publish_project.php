@@ -8,14 +8,27 @@
 include 'conn.php';
 include 'My.php';
 
-if (isset($_POST["title"]) && isset($_POST["time"]) && isset($_POST["launcher_id"]) && isset($_POST["cover_image"]) &&
-    isset($_POST["details_page"])) {
+if (isset($_POST["title"])
+    && isset($_POST["time"])
+    && isset($_POST["launcher_id"])
+    && isset($_POST["cover_image"])
+    && isset($_POST["details_page"])
+    && isset($_POST["project_type"])
+    && isset($_POST["fundraising_amount"])
+    && isset($_POST["apply_for_other"])
+    && isset($_POST["aided_person_id_num"])
+    && isset($_POST["aided_person_id_card_photo"])) {
 
     $title = $_POST["title"];
     $time = $_POST["time"];
     $launcher_id = $_POST["launcher_id"];
     $cover_image = $_POST["cover_image"];
     $details_page = $_POST["details_page"];
+    $project_type = $_POST["project_type"];
+    $fundraising_amount = $_POST["fundraising_amount"];
+    $apply_for_other = $_POST["apply_for_other"];
+    $aided_person_id_num = $_POST["aided_person_id_num"];
+    $aided_person_id_card_photo = $_POST["aided_person_id_card_photo"];
 
     // 将活动详情写入到文件中
     // 生成html文件
@@ -43,8 +56,28 @@ if (isset($_POST["title"]) && isset($_POST["time"]) && isset($_POST["launcher_id
     $page = "http://182.92.158.167/Sunshine_server/activity_details/" . $filename;
 
     $sql_insert = "
-        INSERT INTO Project(title, time, launcher_id, cover_image, details_page) VALUES ('$title', '$time',
-        $launcher_id, '$cover_image', '$page')
+        INSERT INTO Project(
+        title,
+        time,
+        launcher_id,
+        cover_image,
+        details_page,
+        project_type,
+        fundraising_amount,
+        apply_for_other,
+        aided_person_id_num,
+        aided_person_id_card_photo)
+        VALUES (
+        '$title',
+        '$time',
+        $launcher_id,
+        '$cover_image',
+        '$page',
+        $project_type,
+        $fundraising_amount,
+        $apply_for_other,
+        '$aided_person_id_num',
+        '$aided_person_id_card_photo')
     ";
 
     $result_insert = mysql_query($sql_insert);

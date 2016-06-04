@@ -9,6 +9,7 @@ require 'conn.php';
 include 'My.php';
 
 $randNum = rand(10000, 100000);
+$server_address_dir = "http://182.92.158.167/Sunshine_server/";
 
 $filename = date('YmdHis') . '_' . $randNum . '.jpg';
 
@@ -17,7 +18,6 @@ $result = file_put_contents( 'activity_images/'.$filename, file_get_contents('ph
 if (!$result) {
     MyError(101, 201);
 } else {
-    $output = array('data'=>'activity_images/'.$filename, 'info'=> 1, 'code'=>200);
-    $data = 'activity_images/'.$filename;
+    $data = $server_address_dir . 'activity_images/'.$filename;
     MySuccess($data, 200);
 }

@@ -10,9 +10,28 @@ include 'conn.php';
 include 'My.php';
 
 $sql = "
-    SELECT Project.id, Project.title, Project.time, Project.launcher_id, Project.favorite, Project.cover_image,
-    Project.details_page, Project.project_type, Project.fundraising_amount, Project.has_raised_amount, Project.withdraw_amount, Project.create_time, User.name
-     FROM Project, User WHERE User.id = Project.launcher_id ORDER BY create_time DESC
+    SELECT Project.id,
+        Project.title,
+        Project.time,
+        Project.launcher_id,
+        Project.favorite,
+        Project.cover_image,
+        Project.details_page,
+        Project.project_type,
+        Project.fundraising_amount,
+        Project.has_raised_amount,
+        Project.withdraw_amount,
+        Project.apply_for_other,
+        Project.aided_person_id_num,
+        Project.aided_person_id_card_photo,
+        Project.left_time,
+        Project.sponsorship_company_id,
+        Project.create_time,
+        User.name
+        FROM Project, User
+        WHERE User.id = Project.launcher_id
+        ORDER BY create_time
+        DESC
 ";
 
 $result = mysql_query($sql);
