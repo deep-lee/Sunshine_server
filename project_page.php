@@ -10,9 +10,10 @@
 include 'conn.php';
 include 'My.php';
 
-if (isset($_POST["lastId"])) {
+if (isset($_POST["lastId"]) && isset($_POST["project_type"])) {
 
     $lastId = $_POST["lastId"];
+    $project_type = $_POST["project_type"];
 
     $sql = "
         SELECT Project.id,
@@ -32,9 +33,10 @@ if (isset($_POST["lastId"])) {
         Project.left_time,
         Project.sponsorship_company_id,
         Project.create_time,
-        User.name
+        User.name,
+        User.header
         FROM Project, User
-        WHERE User.id = Project.launcher_id && Project.id < $lastId
+        WHERE User.id = Project.launcher_id AND Project.id < $lastId AND Project.left_time > 0 AND project_type = $project_type
         ORDER BY create_time
         DESC
         LIMIT 10
