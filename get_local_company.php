@@ -16,7 +16,7 @@ if(isset($_POST["local_longitude"]) && isset($_POST["local_latitude"]) && isset(
     $length = $_POST["length"];
 
     $sql_all_company = "
-        SELECT Company.id, Company.user_id, Company.company_name, Company.address_longitude, Company.address_latitude,
+        SELECT Company.id, Company.user_id, Company.company_name, Company.address_longitude, Company.address_latitude, Company.address_position,
         Company.business_scope, Company.industry, Company.show_photo,
          Company.introduction, Company.contact, Company.create_time, Company.update_time, Company.company_logo, Company.hits, User.name
          FROM Company, User WHERE User.id = Company.user_id

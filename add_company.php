@@ -9,7 +9,7 @@
 include 'conn.php';
 include 'My.php';
 
-if (isset($_POST["user_id"]) && isset($_POST["company_name"]) && isset($_POST["address_longitude"]) && isset($_POST["address_latitude"])
+if (isset($_POST["user_id"]) && isset($_POST["company_name"]) && isset($_POST["address_longitude"]) && isset($_POST["address_latitude"]) && isset($_POST["address_position"])
     && isset($_POST["business_scope"]) && isset($_POST["industry"]) && isset($_POST["show_photo"]) && isset($_POST["create_time"])
     && isset($_POST["introduction"]) && isset($_POST["contact"]) && isset($_POST["company_logo"])) {
 
@@ -17,6 +17,7 @@ if (isset($_POST["user_id"]) && isset($_POST["company_name"]) && isset($_POST["a
     $company_name = $_POST["company_name"];
     $address_longitude = $_POST["address_longitude"];
     $address_latitude = $_POST["address_latitude"];
+    $address_position = $_POST["address_position"];
     $business_scope = $_POST["business_scope"];
     $industry = $_POST["industry"];
     $show_photo = $_POST["show_photo"];
@@ -26,9 +27,9 @@ if (isset($_POST["user_id"]) && isset($_POST["company_name"]) && isset($_POST["a
     $company_logo = $_POST["company_logo"];
 
     $sql_insert = "
-        INSERT INTO Company (user_id, company_name, address_longitude, address_latitude, business_scope, industry,
+        INSERT INTO Company (user_id, company_name, address_longitude, address_latitude, address_position, business_scope, industry,
         show_photo, company_logo, introduction, contact,create_time )
-        VALUES ($user_id, '$company_name', '$address_longitude', '$address_latitude', '$business_scope', $industry, '$show_photo',
+        VALUES ($user_id, '$company_name', '$address_longitude', '$address_latitude', '$address_position', '$business_scope', $industry, '$show_photo',
                 '$company_logo', '$introduction', '$contact', '$create_time')
     ";
 
