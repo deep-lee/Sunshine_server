@@ -36,7 +36,7 @@ if (isset($_POST["lastId"]) && isset($_POST["project_type"])) {
         User.name,
         User.header
         FROM Project, User
-        WHERE User.id = Project.launcher_id AND Project.id < $lastId AND Project.left_time > 0 AND project_type = $project_type
+        WHERE User.id = Project.launcher_id AND Project.id < $lastId AND Project.left_time > 0 AND project_type = $project_type AND Project.status = 1
         ORDER BY create_time
         DESC
         LIMIT 10
