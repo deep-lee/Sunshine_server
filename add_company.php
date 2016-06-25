@@ -11,7 +11,7 @@ include 'My.php';
 
 if (isset($_POST["user_id"]) && isset($_POST["company_name"]) && isset($_POST["address_longitude"]) && isset($_POST["address_latitude"]) && isset($_POST["address_position"])
     && isset($_POST["business_scope"]) && isset($_POST["industry"]) && isset($_POST["show_photo"]) && isset($_POST["create_time"])
-    && isset($_POST["introduction"]) && isset($_POST["contact"]) && isset($_POST["company_logo"])) {
+    && isset($_POST["introduction"]) && isset($_POST["contact"]) && isset($_POST["company_logo"]) && isset($_POST["cclion_vip_no"])) {
 
     $user_id = $_POST["user_id"];
     $company_name = $_POST["company_name"];
@@ -25,12 +25,13 @@ if (isset($_POST["user_id"]) && isset($_POST["company_name"]) && isset($_POST["a
     $introduction = $_POST["introduction"];
     $contact = $_POST["contact"];
     $company_logo = $_POST["company_logo"];
+    $cclion_vip_no = $_POST["cclion_vip_no"];
 
     $sql_insert = "
-        INSERT INTO Company (user_id, company_name, address_longitude, address_latitude, address_position, business_scope, industry,
-        show_photo, company_logo, introduction, contact,create_time )
+        INSERT INTO Company_verify (user_id, company_name, address_longitude, address_latitude, address_position, business_scope, industry,
+        show_photo, company_logo, introduction, contact, cclion_vip_no, create_time )
         VALUES ($user_id, '$company_name', '$address_longitude', '$address_latitude', '$address_position', '$business_scope', $industry, '$show_photo',
-                '$company_logo', '$introduction', '$contact', '$create_time')
+                '$company_logo', '$introduction', '$contact', '$cclion_vip_no', '$create_time')
     ";
 
     $result_insert = mysql_query($sql_insert);

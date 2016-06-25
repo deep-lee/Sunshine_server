@@ -9,7 +9,7 @@
 include 'conn.php';
 include 'My.php';
 
-$default_header = "";
+$default_header = "http://182.92.158.167/Sunshine_server/headers/20160611091819_27020.jpg";
 if(isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["create_time"]) && isset($_POST["user_type"])) {
 
     $username = $_POST["username"];

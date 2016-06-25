@@ -9,11 +9,12 @@
 include 'conn.php';
 include 'My.php';
 
-if (isset($_POST["company_id"]) && isset($_POST["company_name"]) && isset($_POST["address_longitude"]) && isset($_POST["address_latitude"]) && isset($_POST["address_position"])
+if (isset($_POST["company_id"]) && isset($_POST["user_id"]) && isset($_POST["company_name"]) && isset($_POST["address_longitude"]) && isset($_POST["address_latitude"]) && isset($_POST["address_position"])
     && isset($_POST["business_scope"]) && isset($_POST["industry"]) && isset($_POST["show_photo"]) && isset($_POST["introduction"])
     && isset($_POST["contact"]) && isset($_POST["company_logo"])) {
 
     $company_id = $_POST["company_id"];
+    $user_id = $_POST["user_id"];
     $company_name = $_POST["company_name"];
     $address_longitude = $_POST["address_longitude"];
     $address_latitude = $_POST["address_latitude"];
@@ -25,13 +26,27 @@ if (isset($_POST["company_id"]) && isset($_POST["company_name"]) && isset($_POST
     $contact = $_POST["contact"];
     $company_logo = $_POST["company_logo"];
 
-    $sql_update = "
-        UPDATE Company SET  company_name = '$company_name', address_longitude = '$address_longitude', address_latitude = '$address_latitude', address_position = '$address_position',
-        business_scope = '$business_scope', industry = $industry, show_photo = '$show_photo', introduction = '$introduction',
-        contact = '$contact', company_logo = '$company_logo' WHERE id = $company_id
+//    $sql_update = "
+//        UPDATE Company SET  company_name = '$company_name', address_longitude = '$address_longitude', address_latitude = '$address_latitude', address_position = '$address_position',
+//        business_scope = '$business_scope', industry = $industry, show_photo = '$show_photo', introduction = '$introduction',
+//        contact = '$contact', company_logo = '$company_logo' WHERE id = $company_id
+//    ";
+
+//    $sql_insert = "
+//        INSERT INTO Company_verify (user_id, company_name, address_longitude, address_latitude, address_position, business_scope, industry,
+//        show_photo, company_logo, introduction, contact, cclion_vip_no, create_time )
+//        VALUES ($user_id, '$company_name', '$address_longitude', '$address_latitude', '$address_position', '$business_scope', $industry, '$show_photo',
+//                '$company_logo', '$introduction', '$contact', '$cclion_vip_no', '$create_time')
+//    ";
+
+    $sql_insert = "
+        INSERT INTO Company_verify (company_id, user_id, company_name, address_longitude, address_latitude, address_position, business_scope, industry,
+        show_photo, company_logo, introduction, contact, verify_type )
+        VALUES ($company_id, $user_id, '$company_name', '$address_longitude', '$address_latitude', '$address_position', '$business_scope', $industry, '$show_photo',
+                '$company_logo', '$introduction', '$contact', 1)
     ";
 
-    $result_update = mysql_query($sql_update);
+    $result_update = mysql_query($sql_insert);
     if ($result_update == false) {
         MyError(101, 201);
     }

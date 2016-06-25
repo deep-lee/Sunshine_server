@@ -16,7 +16,7 @@ if(isset($_POST["search_text"])) {
     $sql_search = "
         SELECT Project.id, Project.title, Project.time, Project.launcher_id, Project.favorite, Project.cover_image,
                 Project.details_page, Project.create_time, User.name FROM Project, User
-                 WHERE User.id = Project.launcher_id AND (title LIKE  '%$search_text%' OR details_page LIKE '%$search_text%' OR User.name LIKE '%$search_text%'
+                 WHERE User.id = Project.launcher_id AND Project.project_type = 0 AND (title LIKE  '%$search_text%' OR details_page LIKE '%$search_text%' OR User.name LIKE '%$search_text%'
                   OR User.address LIKE '%$search_text%' OR User.service_team LIKE '%$search_text%')
     ";
 
